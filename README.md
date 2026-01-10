@@ -1,6 +1,6 @@
 # React CLI Starter
 
-A React CLI tool that will help you build and structure your react project with pre-configured setups with tools mentioned bellow.
+A React CLI tool that helps you build and structure your React projects with pre-configured setups using the tools mentioned below
 
 ---
 
