@@ -64,4 +64,3 @@ react-cli
 
 * `cli/` - Logic for the CLI.
 * `templates/` - Pre-defined boilerplates and configurations.
-* `dist/` - Compiled Javascript.
