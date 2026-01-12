@@ -20,7 +20,7 @@ http.interceptors.response.use(
         const status = error.response?.status;
 
         if (status === 401) window.location.href = '/login';
-        if (status === 500) console.error("Server Error: ", error?.response?.data?.message || "Internal Server Error")
+        if (status === 500) console.error("Server Error: ", error.response?.data as { message?: string } || "Internal Server Error")
 
         return Promise.reject(error);
     }

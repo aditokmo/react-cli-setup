@@ -60,9 +60,9 @@ async function main() {
 
             patchAppFile(
                 appFilePath,
-                "import { ReactQueryProvider } from './providers'\n import { ReactQueryDevtools } from '@tanstack/react-query-devtools'",
+                "import { ReactQueryProvider } from './providers'",
                 "<ReactQueryProvider>",
-                "<ReactQueryDevtools initialIsOpen={false} />\n    </ReactQueryProvider>"
+                "</ReactQueryProvider>"
             );
         }
 

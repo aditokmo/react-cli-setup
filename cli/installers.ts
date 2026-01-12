@@ -1,5 +1,5 @@
 import { installers } from './mapper.js';
-import { shadcnInstaller } from './packages.js';
+import { axiosInstaller, shadcnInstaller } from './packages.js';
 import { Answers } from './types.js';
 
 export function collectDependencies(answers: Answers) {
@@ -7,6 +7,11 @@ export function collectDependencies(answers: Answers) {
     const devDependency = new Set<string>();
     const cmd: string[] = [];
 
+    // Default base packages
+    axiosInstaller.dependency?.forEach(d => dependency.add(d));
+    console.log(axiosInstaller)
+
+    // Packages from answers
     Object.entries(answers).forEach(([key, value]) => {
         const installer = installers[value === true ? key : value];
 
@@ -17,6 +22,8 @@ export function collectDependencies(answers: Answers) {
     if (answers.shadcn && answers.style === 'tailwind') {
         cmd.push(...shadcnInstaller.cmd);
     }
+
+    console.log(dependency)
 
     return {
         dependency: Array.from(dependency),

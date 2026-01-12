@@ -40,3 +40,8 @@ export const shadcnInstaller = {
 export const reactRouterInstaller = {
     dependency: ['react-router', 'react-router-dom'],
 };
+
+// Base installation
+export const axiosInstaller = {
+    dependency: ['axios'],
+}
