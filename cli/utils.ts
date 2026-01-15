@@ -35,19 +35,7 @@ export function patchAppFile(filePath: string, importLine: string, openTag: stri
     fs.writeFileSync(filePath, content);
 }
 
-export function finalizeAppFile(filePath: string) {
-    if (!fs.existsSync(filePath)) return;
-    let content = fs.readFileSync(filePath, 'utf-8');
-
-    content = content
-        .replace(/\/\/ \[IMPORTS\]/g, '')
-        .replace(/\/\/ \[PROVIDERS\]/g, '')
-        .replace(/^\s*[\r\n]/gm, (match) => match.length > 2 ? '\n' : match);
-
-    fs.writeFileSync(filePath, content.trim() + '\n');
-}
-
-export function patchViteConfig(filePath: string, importLine: string, pluginLine: string) {
+export function patchViteConfig(filePath: string, beforeReactPlugin: boolean, importLine: string, pluginLine: string) {
     if (!fs.existsSync(filePath)) return;
 
     let content = fs.readFileSync(filePath, 'utf-8');
@@ -56,8 +44,14 @@ export function patchViteConfig(filePath: string, importLine: string, pluginLine
         content = content.replace('// [IMPORTS]', `${importLine}\n// [IMPORTS]`);
     }
 
-    if (pluginLine && !content.includes(pluginLine)) {
-        content = content.replace('// [PLUGINS]', `${pluginLine},\n    // [PLUGINS]`);
+    if (beforeReactPlugin) {
+        if (pluginLine && !content.includes(pluginLine)) {
+            content = content.replace('// [BEFORE_REACT_PLUGINS]', `${pluginLine},\n    // [BEFORE_REACT_PLUGINS]`);
+        }
+    } else {
+        if (pluginLine && !content.includes(pluginLine)) {
+            content = content.replace('// [AFTER_REACT_PLUGINS]', `${pluginLine},\n    // [AFTER_REACT_PLUGINS]`);
+        }
     }
 
     fs.writeFileSync(filePath, content);
@@ -69,9 +63,27 @@ export function finalizeViteConfig(filePath: string) {
     let content = fs.readFileSync(filePath, 'utf-8');
 
     content = content
-        .replace(/\/\/ \[IMPORTS\]/g, '')
-        .replace(/\/\/ \[PLUGINS\]/g, '')
-        .replace(/\n\s*\n\s*\n/g, '\n\n');
+        // Briše marker i sav prazan prostor (redove) oko njega
+        .replace(/\s*\/\/ \[IMPORTS\]\s*/g, '\n')
+        .replace(/\s*\/\/ \[AFTER_REACT_PLUGINS\]\s*/g, '\n')
+        .replace(/\s*\/\/ \[BEFORE_REACT_PLUGINS\]\s*/g, '\n')
+        // Sređuje višestruke prazne redove u jedan
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
 
-    fs.writeFileSync(filePath, content.trim() + '\n');
+    fs.writeFileSync(filePath, content + '\n');
+}
+
+export function finalizeAppFile(filePath: string) {
+    if (!fs.existsSync(filePath)) return;
+
+    let content = fs.readFileSync(filePath, 'utf-8');
+
+    content = content
+        .replace(/\s*\/\/ \[IMPORTS\]\s*/g, '\n')
+        .replace(/\s*\/\/ \[PROVIDERS\]\s*/g, '\n')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+
+    fs.writeFileSync(filePath, content + '\n');
 }

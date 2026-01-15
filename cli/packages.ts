@@ -46,6 +46,11 @@ export const reactRouterInstaller = {
     dependency: ['react-router', 'react-router-dom'],
 };
 
+export const tanstackRouterInstaller = {
+    dependency: ['@tanstack/react-router'],
+    devDependency: ['@tanstack/react-router-devtools', '@tanstack/router-plugin'],
+};
+
 // Forms
 export const reactFormHookInstaller = {
     dependency: ['react-hook-form'],

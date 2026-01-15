@@ -6,8 +6,9 @@ import path from 'node:path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    // [BEFORE_REACT_PLUGINS]
     react(),
-    // [PLUGINS]
+    // [AFTER_REACT_PLUGINS]
   ],
   resolve: {
     alias: {

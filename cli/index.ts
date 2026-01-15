@@ -39,6 +39,7 @@ async function main() {
 
             patchViteConfig(
                 viteConfigPath,
+                false,
                 'import tailwindcss from "@tailwindcss/vite"',
                 'tailwindcss()'
             );
@@ -76,8 +77,18 @@ async function main() {
         // Router
         if (answers.router === 'react-router') {
             copyTemplate(
-                path.join(templateRoot, 'router', 'react-router', 'src'),
+                path.join(templateRoot, 'router', 'react-router', 'src', 'routes'),
                 path.join(projectDir, 'src/routes')
+            );
+
+            copyTemplate(
+                path.join(templateRoot, 'router', 'react-router', 'src', 'components'),
+                path.join(projectDir, 'src/components')
+            );
+
+            copyTemplate(
+                path.join(templateRoot, 'router', 'react-router', 'src', 'modules', 'auth', 'routes'),
+                path.join(projectDir, 'src/modules/auth/routes')
             );
 
             patchAppFile(
@@ -87,7 +98,29 @@ async function main() {
                 "</BrowserRouter>"
             );
         } else if (answers.router === 'tanstack-router') {
-            // tanstack router
+            copyTemplate(
+                path.join(templateRoot, 'router', 'tanstack-router', 'src', 'routes'),
+                path.join(projectDir, 'src/routes')
+            )
+
+            copyTemplate(
+                path.join(templateRoot, 'router', 'tanstack-router', 'src', 'providers'),
+                path.join(projectDir, 'src/providers')
+            )
+
+            patchAppFile(
+                appFilePath,
+                "import { TanStackRouterProvider } from './providers/TanstackRouterProvider'",
+                "<TanStackRouterProvider />",
+                ""
+            );
+
+            patchViteConfig(
+                viteConfigPath,
+                true,
+                "import { tanstackRouter } from '@tanstack/router-plugin/vite'",
+                "tanstackRouter({ target: 'react', autoCodeSplitting: true })"
+            )
         }
 
         finalizeAppFile(appFilePath);

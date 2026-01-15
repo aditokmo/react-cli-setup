@@ -44,7 +44,7 @@ export async function askQuestions(): Promise<Answers> {
                 message: 'Choose router:',
                 options: [
                     { value: 'react-router', label: 'React Router' },
-                    //{ value: 'tanstack-router', label: 'Tanstack Router' },
+                    { value: 'tanstack-router', label: 'Tanstack Router' },
                 ],
             }),
 

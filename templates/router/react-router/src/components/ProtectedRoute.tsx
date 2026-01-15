@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+import { useAuthStore } from '@/store';
 
 type ProtectedRouteProps = {
     children: React.ReactNode;
@@ -9,16 +10,7 @@ export function ProtectedRoute({
     children,
     redirectTo,
 }: ProtectedRouteProps) {
-    // Example: Replace with your auth/session logic
-    // const { isAuthenticated, isLoading } = useSession();
-
-    const isAuthenticated = true;
-    const isLoading = false;
-
-    if (isLoading) {
-        // Replace with loader
-        return <div>Loading...</div>;
-    }
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
     if (!isAuthenticated) {
         return <Navigate to={redirectTo ?? '/'} replace />;
