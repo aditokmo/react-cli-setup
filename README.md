@@ -29,6 +29,22 @@ A React CLI built with Vite that helps you build and structure your projects in 
 
 ---
 
+##  Usage
+
+Run the following command in your terminal to start CLI
+
+```bash
+# Using NPM
+npx @aditokmo/create-react-blueprint
+
+# Using PNPM
+pnpm dlx @aditokmo/create-react-blueprint
+
+# Using Yarn
+yarn dlx @aditokmo/create-react-blueprint
+```
+---
+
 ## Local Setup
 
 To do your own changes and use this CLI locally:
@@ -50,15 +66,12 @@ To do your own changes and use this CLI locally:
    ```bash
    pnpm link --global
 
----
-
-##  Usage
-
-Run the following command in your terminal to start CLI:
-
+5. **Run command in your terminal to start CLI locally:**
 ```bash
-react-cli
+create-react-blueprint
 ```
+
+---
 
 
 ## Project Structure
