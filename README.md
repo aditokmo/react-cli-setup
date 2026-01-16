@@ -16,7 +16,7 @@ A React CLI built with Vite that helps you build and structure your projects in 
 | :--- | :--- |
 | **Folder Structure** | Feature-based |
 | **Modules** | Common, Auth |
-| **Routing** | React Router, TanStack Router (soon) |
+| **Routing** | React Router, TanStack Router |
 | **Data Fetching** | TanStack Query (React Query) & Axios |
 | **State Management** | Zustand |
 | **Form** | React Hook Form, TanStack Form |
