@@ -23,6 +23,10 @@ export const fontAwesomeIconsInstaller = {
     dependency: ['@fortawesome/fontawesome-svg-core', '@fortawesome/react-fontawesome', '@fortawesome/free-solid-svg-icons', '@fortawesome/free-regular-svg-icons', '@fortawesome/free-brands-svg-icons'],
 }
 
+export const phosphorIconsInstaller = {
+    dependency: ['phosphor-react'],
+}
+
 // Toast
 export const reactHotToastInstaller = {
     dependency: ['react-hot-toast'],
