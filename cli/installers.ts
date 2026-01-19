@@ -7,7 +7,7 @@ export function collectDependencies(answers: Answers, packageManager: string) {
     const devDependency = new Set<string>();
     const cmd: string[] = [];
 
-    const dlx = packageManager === 'npm' ? 'npx --yes' : `${packageManager} dlx --yes`;
+    const dlx = packageManager === 'npm' ? 'npx --yes' : `${packageManager} dlx`;
 
     // Default base packages
     axiosInstaller.dependency?.forEach(d => dependency.add(d));
