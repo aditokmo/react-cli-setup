@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@aditokmo/react-setup-cli?color=blue)](https://www.npmjs.com/package/@aditokmo/react-setup-cli)
 
-A React CLI built with Vite that helps you build and structure your projects in seconds. It eliminates manual setup by configuring your favorite tools into a **clean, modular architecture** automatically.
+A React CLI built on top of Vite that helps you build and structure projects in seconds. It eliminates manual setup by configuring your favorite tools into a **clean, modular architecture** automatically.
 
 **Note:** This package is a CLI tool. Do not install it with `npm i`. Instead check `Quick Start` down below.
 
@@ -44,8 +44,6 @@ yarn dlx @aditokmo/react-setup-cli
 
 ## Decisions About Arhitecture
 
-This CLI isn't just a downloader it is architectural choice designed to enforce professional standards.
-
 ### Feature-Based Structure
 
 This architecture uses a modular approach to help you build large-scale projects. Instead of mixing all components and hooks into global folders, everything is grouped by domain, such as Auth or Dashboard. This method makes it much easier to navigate the codebase and ensures your project remains maintainable as it grows.
@@ -68,10 +66,10 @@ You can choose between CSS, SCSS (soon), or Tailwind CSS. While I personally rec
 
 ### Routing
 
-The CLI offers two powerful options: React Router and TanStack Router.
+The CLI offers two options: React Router and TanStack Router.
 
-- **React Router** is the industry standard that most developers are familiar with.
-- **TanStack Router** is included for those who want a fully type-safe routing experience with built-in data loading capabilities. Whichever you choose, the CLI doesn't just install the library it will generate a `routes/` directory system to help you easily separate your public pages from protected pages.
+- React Router is the industry standard that most developers are familiar with.
+- TanStack Router is included for those who want a fully type-safe routing experience with built-in data loading capabilities. Whichever you choose, the CLI doesn't just install the library it will generate a `routes/` directory system to help you easily separate your public pages from protected pages.
 
 ### Package Manager Detection
 
